@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <script>
+      (function (d, script) {
+        script = d.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.onload = () => {};
+        script.src = "https://checkout.autofi.com/script.js";
+        d.getElementsByTagName("head")[0].appendChild(script);
+      })(document);
+      (function (d, script) {
+        document.getElementById("#page-loader").remove();
+        // https://SOMETHING.carlotz.com/?vin=XXXXXXXXXXXXX&pathway=XXXXXXX
+      })(document);
+    </script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <div id="page-loader" class="loader">&nbsp;</div>
+    <div id="page-error" class="loader">
+      We're sorry, autofi is unavailable.
+    </div>
+  </body>
+</html>
