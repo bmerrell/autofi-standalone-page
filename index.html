@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Parcel Sandbox</title>
-    <meta charset="UTF-8" />
-    <script>
-      (function (d, script) {
-        script = d.createElement("script");
-        script.type = "text/javascript";
-        script.async = true;
-        script.onload = () => {};
-        script.src = "https://checkout.autofi.com/script.js";
-        d.getElementsByTagName("head")[0].appendChild(script);
-      })(document);
-      (function (d, script) {
-        document.getElementById("#page-loader").remove();
-        // https://SOMETHING.carlotz.com/?vin=XXXXXXXXXXXXX&pathway=XXXXXXX
-      })(document);
-    </script>
+      <!-- 
+        https://dev.carlotz.com/mobileAutoFi/index.html?vin=XXXXXXXXXXXXX&pathway=XXXXXXX
+        https://dev.carlotz.com/mobileAutoFi/index.html?vin=5FRYD4H94HB001598&pathway=requestMoreInfo
+        https://dev.carlotz.com/mobileAutoFi/index.html?vin=5FRYD4H94HB001598&pathway=scheduleTestDrive
+        https://dev.carlotz.com/mobileAutoFi/index.html?vin=5FRYD4H94HB001598&pathway=explorePayments 
+      -->
+    <title>CarLotz</title>
+    <meta charset="UTF-8">
+    <script>var param_vin = '';
+var param_pathway = '';
+var title = '';
+
+(function (d, script) {
+  var urlParams = new URLSearchParams(window.location.search);
+  script = d.createElement("script");
+  param_vin = urlParams.getAll('vin')[0];
+  param_pathway = urlParams.getAll('pathway')[0];
+  console.log(param_vin);
+  console.log(param_pathway);
+
+  if (param_pathway == "scheduleTestDrive") {
+    title = 'Schedule appointment';
+  }
+
+  script.type = "text/javascript";
+  script.async = true;
+
+  script.onload = function () {};
+
+  script.src = "https://checkout.autofi.com/script.js";
+  d.getElementsByTagName("head")[0].appendChild(script);
+})(document);
+
+(function (d, script) {//document.getElementById("#page-loader").remove();
+})(document);
+
+window.addEventListener('load', function () {
+  window.autofi.api.render({
+    pathway: param_pathway,
+    vin: param_vin,
+    vdpUrl: '',
+    formHeader: title,
+    formSubheader: ''
+  });
+});</script>
   </head>
 
   <body>
